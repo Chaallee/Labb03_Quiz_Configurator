@@ -1,24 +1,25 @@
-﻿namespace Labb3.Models
+﻿
+namespace Labb3.Models;
+
+internal class Question
 {
-    internal class Question
+
+    
+    public Question(string query, string correctAnswer,
+        string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3)
     {
-
-
-        public Question(string query, string correctAnswer, string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3)
-        {
-            Query = query;
-            CorrectAnswer = correctAnswer;
-            InCorrectAnswers = new string[3] { incorrectAnswer1, incorrectAnswer2, incorrectAnswer3 };
+        Query = query;
+        CorrectAnswer = correctAnswer;
+        InCorrectAnswers = [incorrectAnswer1, incorrectAnswer2, incorrectAnswer3];
 
 
 
-        }
-
-
-        public string Query { get; set; }         // byt namn sen
-
-        public string CorrectAnswer { get; set; }
-
-        public string[] InCorrectAnswers { get; set; }
     }
+        
+
+    public string Query { get; set; }         // byt namn sen
+
+    public string CorrectAnswer { get; set; }
+
+    public string[] InCorrectAnswers { get; set; }
 }

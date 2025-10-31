@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Labb3.ViewModels;
 
-internal class ViewModelBase : INotifyPropertyChanged
+internal class ViewModelBase : INotifyPropertyChanged //INotifyPropertyChanged ser till att settings man ändrar i sitt user interface uppdaterar "data", t.ex time limit, difficulty osv. 
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
