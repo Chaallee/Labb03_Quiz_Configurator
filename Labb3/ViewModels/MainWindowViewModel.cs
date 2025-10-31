@@ -35,7 +35,8 @@ namespace Labb3.ViewModels
             ActivePack = new QuestionPackViewModel(pack);
             ActivePack.Questions.Add(new Question($"Exempel på fråga här","1", "2", "3", "4"));
             ActivePack.Questions.Add(new Question($"Exempel på fråga2 här", "svar1", "svar2", "svar3", "svar4"));
-            ActivePack.Questions
+       
+
 
 
         }
