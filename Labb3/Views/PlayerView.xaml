@@ -8,9 +8,16 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Button
-            Content="Click here!"
+            Content="{Binding ActivePack.Name}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             />
     </Grid>
 </UserControl>
+
+    
+    <!--
+        lägg till alla 4 knappar med olika svarsalternativ. 
+        
+        samt en knapp med {Binding.ActivePack.CorrectAnswer} t.ex
+        -->
