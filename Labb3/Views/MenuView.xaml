@@ -17,10 +17,13 @@
             <MenuItem Header="_Edit">
                 <MenuItem Header="Add Question"/>
             <MenuItem Header="Remove Question" InputGestureText="Ctrl+R"/>
+            <MenuItem Header="Set PackName" Command="{Binding PlayerViewModel.SetPackNameCommand}"/>
         </MenuItem>
         </Menu>
 </UserControl>
 
+    
+    
 <!-- Första bokstav efter _ blir shortcut i menyn  
     <Separator/> gör en liten linje mellan valen i menyn
     InputGestureText för att skriva "instruktioner" eller grå text i menyn.

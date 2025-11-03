@@ -10,7 +10,7 @@ internal class Question
     {
         Query = query;
         CorrectAnswer = correctAnswer;
-        InCorrectAnswers = [incorrectAnswer1, incorrectAnswer2, incorrectAnswer3];
+        IncorrectAnswers = [incorrectAnswer1, incorrectAnswer2, incorrectAnswer3];
 
 
 
@@ -21,5 +21,5 @@ internal class Question
 
     public string CorrectAnswer { get; set; }
 
-    public string[] InCorrectAnswers { get; set; }
+    public string[] IncorrectAnswers { get; set; }
 }

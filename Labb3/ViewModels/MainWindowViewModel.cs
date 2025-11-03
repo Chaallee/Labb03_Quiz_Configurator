@@ -20,29 +20,22 @@ namespace Labb3.ViewModels
 			set {
 				_activePack = value;
 				RaisePropertyChanged();
-                PlayerViewModel.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
+                PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
 			}
 		}
 
-        public PlayerViewModel? PlayerViewModel { get; set; }
-        public ConfigurationViewModel? ConfigurationViewModel { get; set; }
+        public PlayerViewModel? PlayerViewModel { get; }
+        public ConfigurationViewModel? ConfigurationViewModel { get; }
         public MainWindowViewModel()
         {
-            PlayerViewModel =  new PlayerViewModel(this);
+            PlayerViewModel = new PlayerViewModel(this);
             ConfigurationViewModel = new ConfigurationViewModel(this);
-			
-            var pack = new QuestionPack("MyQuestionPack");
+
+            var pack = new QuestionPack("Mina frågor");
             ActivePack = new QuestionPackViewModel(pack);
-            ActivePack.Questions.Add(new Question($"Exempel på fråga här","1", "2", "3", "4"));
-            ActivePack.Questions.Add(new Question($"Exempel på fråga2 här", "svar1", "svar2", "svar3", "svar4"));
-       
-
-
-
+            ActivePack.Questions.Add(new Question($"Vad är 1+1", "2", "3", "1", "4"));
+            ActivePack.Questions.Add(new Question($"Vad heter sveriges huvudstad?", "Stockholm", "Oslo", "London", "Göteborg"));
         }
 
     }
 }
-
-
-
