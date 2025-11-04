@@ -12,10 +12,10 @@
         <StackPanel>
             <TextBox Text="{Binding DemoText, UpdateSourceTrigger=PropertyChanged}"/>
             <Button
-            Content="{Binding ActivePack.Name}"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Command="{Binding SetPackNameCommand}"
+                Content="{Binding ActivePack.Name}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Command="{Binding SetPackNameCommand}"
             />
         </StackPanel>
     </Grid>

@@ -14,7 +14,6 @@
                 <Separator/>
             <MenuItem Header="E_xit" Icon="{fa:Icon DoorOpen}"/>
             </MenuItem>
-            
             <MenuItem Header="_Edit">
                 <MenuItem Header="Add Question"/>
             <MenuItem Header="Remove Question" InputGestureText="Ctrl+R"/>
