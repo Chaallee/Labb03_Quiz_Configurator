@@ -14,5 +14,8 @@ namespace Labb3.ViewModels
         {
             this.mainWindowViewModel = mainWindowViewModel;
         }
+
+
+
     }
 }

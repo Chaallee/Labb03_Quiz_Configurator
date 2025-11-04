@@ -7,7 +7,6 @@ internal class ViewModelBase : INotifyPropertyChanged //INotifyPropertyChanged s
     public event PropertyChangedEventHandler? PropertyChanged;
 
 
-
     public void RaisePropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

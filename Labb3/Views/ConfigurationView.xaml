@@ -5,31 +5,59 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Labb3.Views"
              xmlns:views="clr-namespace:Labb3.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding ConfigurationViewModel}"
+             FontSize="14"
+           
          
  >
 
     <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="12*"/>
         </Grid.ColumnDefinitions>
-        <ListBox
-            Grid.Column="0"    
-            x:Name="QuestionList"
-            ItemsSource="{Binding QuestionPack}"
-            DisplayMemberPath="Text"
-        />
-        <Grid Grid.Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="3" Margin="5" Content="{fa:Icon Sliders}" x:Name="questionPackSettings"/>
+        <Button Grid.Column="4" Margin="5" Content="{fa:Icon Plus}" x:Name="addQuestion"/>
+        <Button Grid.Column="5" Margin="5" Content="{fa:Icon Minus}" x:Name="removeQuestion"/>
+        <Label Grid.Row="0" Grid.ColumnSpan="3" Content="Questionpack name visas här" Grid.Column="0" FontWeight="Bold"/>
+        <StackPanel Grid.ColumnSpan="6" Grid.Row="1"  Orientation="Vertical" Margin="10 5 0 0">
             
-        </Grid>
+            <ListBox Margin="5"
+            x:Name="QuestionList"
+            ItemsSource="{Binding QuestionPack}"       
+            DisplayMemberPath="Text" Height="350"
+        />
+            
+        </StackPanel>
+
+        <StackPanel Grid.Column="7" Grid.RowSpan="5"   Orientation="Vertical">
+                <Label Content="Question:" Margin="10 5 0 0" FontWeight="Bold"/>
+                <TextBox Margin="14 0 14 20"  TextWrapping="Wrap" Height="65" x:Name="questionTextBox"/>
+
+                <Label Content="Correct answer:" Margin="10 10 0 0" FontWeight="Bold"/>
+                <TextBox Margin="14 0 14 0" x:Name="correctAnswer"/>
+                <Label Content="First incorrect answer:" Margin="10 0 0 0" FontWeight="Bold" x:Name="incorrectAnswer1"/>
+                <TextBox Margin="14 0 14 0"/>
+                <Label Content="Second incorrect answer:" Margin="10 0 0 0" FontWeight="Bold" x:Name="incorrectAnswer2"/>
+                <TextBox Margin="14 0 14 0"/>
+                <Label Content="Third incorrect answer:" Margin="10 0 0 0" FontWeight="Bold" x:Name="incorrectAnswer3"/>
+                <TextBox Margin="14 0 14 0"/>
+            </StackPanel>
+            
+     
     </Grid>
 
     
