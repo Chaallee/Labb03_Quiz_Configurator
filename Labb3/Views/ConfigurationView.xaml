@@ -4,12 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Labb3.Views"
+             xmlns:views="clr-namespace:Labb3.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding ConfigurationViewModel}"
+         
  >
-             
+
     <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox
+            Grid.Column="0"    
+            x:Name="QuestionList"
+            ItemsSource="{Binding QuestionPack}"
+            DisplayMemberPath="Text"
+        />
+        <Grid Grid.Column="1">
             
+        </Grid>
     </Grid>
+
+    
 </UserControl>
