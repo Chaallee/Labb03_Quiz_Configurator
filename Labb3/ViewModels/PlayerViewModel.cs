@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using Labb3.Command;
 using Labb3.Views;
 
@@ -20,6 +21,16 @@ namespace Labb3.ViewModels
 
             SetPackNameCommand = new DelegateCommand(SetPackName, CanSetPackName);
             DemoText = string.Empty;
+
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2.0);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            ActivePack.Name += "+";
         }
 
         private string _demoText;
