@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:Labb3.Views"
+             DataContext="{Binding ConfigurationViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
  
@@ -19,10 +20,10 @@
             <MenuItem Header="E_xit" InputGestureText="Alt+F4" Icon="{fa:Icon DoorOpen}"/>
             </MenuItem>
             <MenuItem Header="_Edit">
-                <MenuItem Header="Add Question" InputGestureText="Insert" Icon="{fa:Icon Plus}"/>
-            <MenuItem Header="Remove Question" InputGestureText="Delete" Icon="{fa:Icon Minus}"/>
-            <MenuItem Header="Set PackName" Command="{Binding PlayerViewModel.SetPackNameCommand}" Icon="{fa:Icon Pencil}"/>  
-            <MenuItem Header="Pack Options" InputGestureText="Ctrl+O" Icon="{fa:Icon Sliders}"/>
+            <MenuItem Header="Add Question" InputGestureText="Insert" Icon="{fa:Icon Plus}" Command="{Binding AddQuestionCommand}"/>
+            <MenuItem Header="Remove Question" InputGestureText="Delete" Icon="{fa:Icon Minus}" Command="{Binding RemoveQuestionCommand}"/>
+            <MenuItem Header="Set PackName" Icon="{fa:Icon Pencil}" Command="{Binding PlayerViewModel.SetPackNameCommand}"/>
+            <MenuItem Header="Pack Options" InputGestureText="Ctrl+O" Icon="{fa:Icon Sliders}" Command="{Binding PackOptionsCommand}"/>
         </MenuItem>
         <MenuItem Header="_View">
             <MenuItem Header="Play" InputGestureText="Ctrl+P" Icon="{fa:Icon Play}"/>

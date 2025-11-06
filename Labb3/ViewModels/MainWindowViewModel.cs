@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
 using Labb3.Models;
 
 namespace Labb3.ViewModels
@@ -37,5 +39,27 @@ namespace Labb3.ViewModels
             ActivePack.Questions.Add(new Question($"Vad heter sveriges huvudstad?", "Stockholm", "Oslo", "London", "Göteborg"));
         }
 
+    }
+
+    public partial class PackOptions : Window
+    {
+        public string Difficulty
+        {
+            get => Difficulty;
+            set => Difficulty = value;
+        }
+
+        public string TimeLimitInSeconds
+        {
+            get => TimeLimitInSeconds;
+            set => TimeLimitInSeconds = value;
+        }
+
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
     }
 }
