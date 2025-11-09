@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Labb3.Views.PackOptions"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="clr-namespace:Labb3.Models"
         Title="Pack Options" 
         Width="270" 
         Height="250"
@@ -15,16 +16,16 @@
 
         <StackPanel Grid.Row="0" Margin="0 5 0 15">
             <TextBlock Text="Pack Name:" FontWeight="Bold"/>
-            <TextBox Text="{Binding PackName, UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                      Margin="0 5 0 0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="0 0 0 10">
             <TextBlock Text="Difficulty:" FontWeight="Bold"/>
             <ComboBox SelectedItem="{Binding Difficulty}" Margin="0 5 0 0">
-                <ComboBoxItem Content="Easy"/>
-                <ComboBoxItem Content="Medium"/>
-                <ComboBoxItem Content="Hard"/>
+                <models:Difficulty>Easy</models:Difficulty>
+                <models:Difficulty>Medium</models:Difficulty>
+                <models:Difficulty>Hard</models:Difficulty>
             </ComboBox>
         </StackPanel>
 

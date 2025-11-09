@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Labb3.ViewModels;
 
 namespace Labb3.Views
 {
@@ -23,10 +24,17 @@ namespace Labb3.Views
         {
             InitializeComponent();
         }
-    }
 
-    public partial class PackOptions : Window
-    {
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
         private string _difficulty;
         public string Difficulty
         {

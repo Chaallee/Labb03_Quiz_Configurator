@@ -8,13 +8,10 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             DataContext="{Binding ConfigurationViewModel}"
              FontSize="14"
-           
-         
  >
 
-    <Grid>
+    <Grid DataContext="{Binding ConfigurationViewModel}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -36,24 +33,31 @@
         <StackPanel Grid.ColumnSpan="6" Grid.Row="1"  Orientation="Vertical">
             <ListBox
             x:Name="QuestionList"
-            ItemsSource="{Binding QuestionPack}"       
-            DisplayMemberPath="Text" Height="350"
+            ItemsSource="{Binding DataContext.ActivePack.Questions, RelativeSource={RelativeSource AncestorType=Window}}"
+            SelectedItem="{Binding SelectedQuestion}"
+            DisplayMemberPath="Query" 
+            Height="350"
         />
 
         </StackPanel>
 
         <StackPanel Grid.Column="6" Grid.RowSpan="2"   Orientation="Vertical">
             <Label Content="Question:" Margin="10 5 0 0" FontWeight="Bold"/>
-            <TextBox Margin="14 0 14 20"  TextWrapping="Wrap" Height="65" x:Name="questionTextBox"/>
+            <TextBox Margin="14 0 14 20"  TextWrapping="Wrap" Height="65" x:Name="questionTextBox" Text="{Binding EditQuery, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="Correct answer:" Margin="10 10 0 0" FontWeight="Bold"/>
-            <TextBox Margin="14 0 14 0" x:Name="correctAnswer"/>
-            <Label Content="First incorrect answer:" Margin="10 0 0 0" FontWeight="Bold" x:Name="incorrectAnswer1"/>
-            <TextBox Margin="14 0 14 0"/>
-            <Label Content="Second incorrect answer:" Margin="10 0 0 0" FontWeight="Bold" x:Name="incorrectAnswer2"/>
-            <TextBox Margin="14 0 14 0"/>
-            <Label Content="Third incorrect answer:" Margin="10 0 0 0" FontWeight="Bold" x:Name="incorrectAnswer3"/>
-            <TextBox Margin="14 0 14 0"/>
+            <TextBox Margin="14 0 14 0" x:Name="correctAnswer" Text="{Binding EditCorrectAnswer, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="First incorrect answer:" Margin="10 0 0 0" FontWeight="Bold"/>
+            <TextBox Margin="14 0 14 0" x:Name="incorrectAnswer1" Text="{Binding EditIncorrectAnswer1, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Second incorrect answer:" Margin="10 0 0 0" FontWeight="Bold"/>
+            <TextBox Margin="14 0 14 0" x:Name="incorrectAnswer2" Text="{Binding EditIncorrectAnswer2, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Third incorrect answer:" Margin="10 0 0 0" FontWeight="Bold"/>
+            <TextBox Margin="14 0 14 0" x:Name="incorrectAnswer3" Text="{Binding EditIncorrectAnswer3, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button x:Name="SaveQuestionButton" 
+                    Content="Save question" 
+                    Command="{Binding SaveQuestionCommand}"
+                    Margin="14 10 14 0"/>
         </StackPanel>
 
 
