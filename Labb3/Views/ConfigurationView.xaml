@@ -29,15 +29,17 @@
         <Button Grid.Row="0" Grid.Column="3" Margin="5,5,5,5" Content="{fa:Icon Sliders}" x:Name="packOptions" Command="{Binding PackOptionsCommand}" ToolTip="Pack Options"/>
         <Button Grid.Row="0" Grid.Column="4" Margin="5,5,5,5" Content="{fa:Icon Plus}" x:Name="addQuestion" Command="{Binding AddQuestionCommand}" ToolTip="Add question"/>
         <Button Grid.Row="0" Grid.Column="5" Margin="5,5,5,5" Content="{fa:Icon Minus}" x:Name="removeQuestion" Command="{Binding RemoveQuestionCommand}" ToolTip="Remove question"/>
-        <Label Grid.Row="0" Grid.Column="0" Margin="5 3 5 0" Content="Questionpack name visas här" Grid.ColumnSpan="3" FontWeight="Bold"/>
+        <Label Grid.Row="0" Grid.Column="0" Margin="5 3 5 0" 
+               Content="{Binding ActivePack.Name}" 
+               Grid.ColumnSpan="3" FontWeight="Bold"/>
         <StackPanel Grid.ColumnSpan="6" Grid.Row="1"  Orientation="Vertical">
             <ListBox
-            x:Name="QuestionList"
-            ItemsSource="{Binding DataContext.ActivePack.Questions, RelativeSource={RelativeSource AncestorType=Window}}"
-            SelectedItem="{Binding SelectedQuestion}"
-            DisplayMemberPath="Query" 
-            Height="350"
-        />
+                x:Name="QuestionList"
+                ItemsSource="{Binding ActivePack.Questions}"
+                SelectedItem="{Binding SelectedQuestion}"
+                DisplayMemberPath="Query" 
+                Height="350"
+            />
 
         </StackPanel>
 

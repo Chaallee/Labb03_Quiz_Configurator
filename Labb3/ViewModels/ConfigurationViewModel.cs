@@ -90,6 +90,8 @@ namespace Labb3.ViewModels
             }
         }
 
+        public QuestionPackViewModel? ActivePack => mainWindowViewModel?.ActivePack;
+
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
             this.mainWindowViewModel = mainWindowViewModel;
@@ -98,6 +100,22 @@ namespace Labb3.ViewModels
             PackOptionsCommand = new DelegateCommand(PackOptions);
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
             SaveQuestionCommand = new DelegateCommand(SaveQuestion, CanSaveQuestion);
+
+            if (mainWindowViewModel != null)
+            {
+                mainWindowViewModel.PropertyChanged += OnMainWindowPropertyChanged;
+            }
+        }
+
+        private void OnMainWindowPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MainWindowViewModel.ActivePack))
+            {
+                RaisePropertyChanged(nameof(ActivePack));
+                AddQuestionCommand.RaiseCanExecuteChanged();
+                RemoveQuestionCommand.RaiseCanExecuteChanged();
+                SaveQuestionCommand.RaiseCanExecuteChanged();
+            }
         }
 
         private void LoadQuestionToEditor()
@@ -122,15 +140,11 @@ namespace Labb3.ViewModels
 
         private bool CanSaveQuestion(object? obj)
         {
-            return mainWindowViewModel?.ActivePack != null;
+            return SelectedQuestion != null && mainWindowViewModel?.ActivePack != null;
         }
 
         private void SaveQuestion(object? obj)
         {
-            if (mainWindowViewModel?.ActivePack == null)
-                return;
-
-
             if (string.IsNullOrWhiteSpace(EditQuery))
             {
                 MessageBox.Show("Question text cannot be empty.", "Empty text box error", 
@@ -144,18 +158,21 @@ namespace Labb3.ViewModels
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(EditIncorrectAnswer1))
             {
                 MessageBox.Show("First incorrect answer box is still empty.", "Empty text box error",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(EditIncorrectAnswer2))
             {
                 MessageBox.Show("Second incorrect answer box is still empty.", "Empty text box error",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(EditIncorrectAnswer3))
             {
                 MessageBox.Show("Third incorrect answer box is still empty.", "Empty text box error",
@@ -163,15 +180,11 @@ namespace Labb3.ViewModels
                 return;
             }
 
-            if (SelectedQuestion != null)
-            {
-                SelectedQuestion.Query = EditQuery;
-                SelectedQuestion.CorrectAnswer = EditCorrectAnswer;
-                SelectedQuestion.IncorrectAnswers[0] = EditIncorrectAnswer1;
-                SelectedQuestion.IncorrectAnswers[1] = EditIncorrectAnswer2;
-                SelectedQuestion.IncorrectAnswers[2] = EditIncorrectAnswer3;
-            }
-
+            SelectedQuestion!.Query = EditQuery;
+            SelectedQuestion.CorrectAnswer = EditCorrectAnswer;
+            SelectedQuestion.IncorrectAnswers[0] = EditIncorrectAnswer1;
+            SelectedQuestion.IncorrectAnswers[1] = EditIncorrectAnswer2;
+            SelectedQuestion.IncorrectAnswers[2] = EditIncorrectAnswer3;
         }
 
         private bool CanRemoveQuestion(object? obj)
@@ -181,11 +194,9 @@ namespace Labb3.ViewModels
 
         private void RemoveQuestion(object? obj)
         {
-            if (mainWindowViewModel?.ActivePack != null && SelectedQuestion != null)
-            {
-                mainWindowViewModel.ActivePack.Questions.Remove(SelectedQuestion);
-                SelectedQuestion = null;
-            }
+
+            mainWindowViewModel!.ActivePack.Questions.Remove(SelectedQuestion!);
+            SelectedQuestion = null;
         }
 
         private void PackOptions(object? obj)
@@ -209,19 +220,17 @@ namespace Labb3.ViewModels
 
         private void AddQuestion(object? obj)
         {
-            if (mainWindowViewModel?.ActivePack != null)
-            {
-                var newQuestion = new Question(
-                    query: "Write a new question here",
-                    correctAnswer: "Correct Answer goes here",
-                    incorrectAnswer1: "Wrong Answer 1",
-                    incorrectAnswer2: "Wrong Answer 2",
-                    incorrectAnswer3: "Wrong Answer 3"
-                );
 
-                mainWindowViewModel.ActivePack.Questions.Add(newQuestion);
-                SelectedQuestion = newQuestion;
-            }
+            var newQuestion = new Question(
+                query: "Write a new question here",
+                correctAnswer: "Correct Answer goes here",
+                incorrectAnswer1: "Wrong Answer 1",
+                incorrectAnswer2: "Wrong Answer 2",
+                incorrectAnswer3: "Wrong Answer 3"
+            );
+
+            mainWindowViewModel!.ActivePack.Questions.Add(newQuestion);
+            SelectedQuestion = newQuestion;
         }
     }
 }
