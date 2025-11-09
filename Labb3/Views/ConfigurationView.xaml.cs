@@ -25,5 +25,35 @@ namespace Labb3.Views
             InitializeComponent();
         }
 
+
+
+    }
+}
+
+        
+
+public partial class PackOptions : Window
+{
+    public string Difficulty
+    {
+        get => Difficulty;
+        set => Difficulty = value;
+    }
+
+    public string TimeLimitInSeconds
+    {
+        get => TimeLimitInSeconds;
+        set => TimeLimitInSeconds = value;
+    }
+
+    //public PackOptions()
+    //{
+    //    InitializeComponent();  ??
+    //}
+
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        DialogResult = false;
+        Close();
     }
 }

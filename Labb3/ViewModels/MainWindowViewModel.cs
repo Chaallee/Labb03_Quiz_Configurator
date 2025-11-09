@@ -41,25 +41,4 @@ namespace Labb3.ViewModels
 
     }
 
-    public partial class PackOptions : Window
-    {
-        public string Difficulty
-        {
-            get => Difficulty;
-            set => Difficulty = value;
-        }
-
-        public string TimeLimitInSeconds
-        {
-            get => TimeLimitInSeconds;
-            set => TimeLimitInSeconds = value;
-        }
-
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-            Close();
-        }
-    }
 }
