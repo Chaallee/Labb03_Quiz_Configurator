@@ -11,7 +11,7 @@
  
         <Menu>
             <MenuItem Header=" _File">    
-                <MenuItem Header="_New Question Pack" Icon="{fa:Icon file}"/>
+                <MenuItem Header="_New Question Pack" Icon="{fa:Icon filecircleplus}"/>
             <MenuItem Header="Select Question Pack" Icon="{fa:Icon FolderOpen}"/>
             <MenuItem Header="Delete Question Pack" Icon="{fa:Icon Trashcan}" />
             <Separator/>

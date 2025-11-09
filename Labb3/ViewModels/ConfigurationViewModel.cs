@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Animation;
 using Labb3.Command;
+using Labb3.Views;
 
 namespace Labb3.ViewModels
 {
@@ -36,7 +38,12 @@ namespace Labb3.ViewModels
 
         private void PackOptions(object? obj)
         {
-            throw new NotImplementedException();
+            var dialog = new PackOptions
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                Owner = Application.Current.MainWindow
+            };
+            dialog.ShowDialog();
         }
 
         private void AddQuestion(object? obj)
@@ -44,7 +51,5 @@ namespace Labb3.ViewModels
             throw new NotImplementedException();
         }
 
-        
-        
     }
 }

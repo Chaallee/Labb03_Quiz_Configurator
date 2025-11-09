@@ -1,0 +1,32 @@
+﻿<Window x:Class="Labb3.Views.PackOptions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labb3.Views"
+        xmlns:views="clr-namespace:Labb3.Views"
+        mc:Ignorable="d"
+        Height="230"
+        Width="270"
+        Title="Pack Options"
+        d:DesignHeight="230" d:DesignWidth="270">
+    
+    <StackPanel Margin="20">
+
+        <TextBlock Text="Pack Name:" FontWeight="Bold"/>
+        <TextBox Text="{Binding PackName}" Margin="0 5 0 15"/>
+
+        <TextBlock Text="Difficulty:" FontWeight="Bold"/>
+        <ComboBox SelectedItem="{Binding Difficulty}" Margin="0 5 0 15">
+            <ComboBoxItem Content="Easy"/>
+            <ComboBoxItem Content="Medium"/>
+            <ComboBoxItem Content="Hard"/>
+        </ComboBox>
+
+        <TextBlock Text="Time Limit (seconds):" FontWeight="Bold"/>
+        <Slider Minimum="0" Maximum="120"
+                Value="{Binding TimeLimitInSeconds}"
+                TickFrequency="5" IsSnapToTickEnabled="True"/>
+
+    </StackPanel>
+</Window>

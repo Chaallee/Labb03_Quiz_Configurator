@@ -5,15 +5,15 @@ namespace Labb3.Models;
 internal enum Difficulty { Easy, Medium, Hard }
 internal class QuestionPack
 {
-    public QuestionPack(string name, Difficulty difficulty = Difficulty.Medium, int timeLimitInSeconds = 30)
+    public QuestionPack(string packName, Difficulty difficulty = Difficulty.Medium, int timeLimitInSeconds = 30)
     {
-        Name = name;
+        PackName = packName;
         Difficulty = difficulty;
         TimeLimitInSeconds = timeLimitInSeconds;
         Questions = new List<Question>();
     }
 
-    public string Name { get; set; }
+    public string PackName { get; set; }
     public Difficulty Difficulty { get; set; }
     public int TimeLimitInSeconds { get; set; }
 

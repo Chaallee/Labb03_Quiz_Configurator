@@ -32,10 +32,10 @@ internal class QuestionPackViewModel : ViewModelBase
 
     public string Name
     {
-        get => _model.Name;
+        get => _model.PackName;
         set
         {
-            _model.Name = value;
+            _model.PackName = value;
             RaisePropertyChanged();
         }
     }
