@@ -23,7 +23,6 @@ namespace Labb3.ViewModels
         public string Answer4 { get; private set; }
 
 
-
         public PlayerViewModel(MainWindowViewModel? mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
@@ -112,5 +111,7 @@ namespace Labb3.ViewModels
         {
             ActivePack.Name = DemoText;
         }
+
+       
     }
 }

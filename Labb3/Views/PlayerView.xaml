@@ -7,9 +7,9 @@
              xmlns:views="clr-namespace:Labb3.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             DataContext="{Binding PlayerViewModel}"
+             
  >
-    <Grid>
+    <Grid DataContext="{Binding PlayerViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -24,7 +24,7 @@
                    Margin="0 0 20 0"/>
 
         <TextBlock Grid.Row="1"
-                   Text="Binding current question här"
+                   Text="{Binding ActivePack.Query}"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
                    FontSize="35"
@@ -33,7 +33,9 @@
         <TextBlock Grid.Row="2"
                    FontSize="20"
                    HorizontalAlignment="Center"
-                   Text="Binding QuestionIndex, StringFormat=Question {0} of {TotalQuestions här"/>
+                   Text="fråga X av x här"/>
+
+
 
         <Grid Grid.Row="3" Margin="30">
             <Grid.RowDefinitions>

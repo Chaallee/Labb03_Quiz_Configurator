@@ -96,7 +96,7 @@ namespace Labb3.ViewModels
         {
             this.mainWindowViewModel = mainWindowViewModel;
 
-            AddQuestionCommand = new DelegateCommand(AddQuestion, CanAddQuestion);
+            AddQuestionCommand = new DelegateCommand(AddQuestion);
             PackOptionsCommand = new DelegateCommand(PackOptions);
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
             SaveQuestionCommand = new DelegateCommand(SaveQuestion, CanSaveQuestion);
@@ -213,10 +213,6 @@ namespace Labb3.ViewModels
             }
         }
 
-        private bool CanAddQuestion(object? obj)
-        {
-            return mainWindowViewModel?.ActivePack != null;
-        }
 
         private void AddQuestion(object? obj)
         {

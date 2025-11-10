@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:Labb3.Views"
-             DataContext="{Binding ConfigurationViewModel}"
+             
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
  
         <Menu>
-            <MenuItem Header=" _File">    
-                <MenuItem Header="_New Question Pack" Icon="{fa:Icon filecircleplus}"/>
+            <MenuItem Header=" _File">
+            <MenuItem Header="_New Question Pack" Icon="{fa:Icon filecircleplus}"/>
             <MenuItem Header="Select Question Pack" Icon="{fa:Icon FolderOpen}"/>
             <MenuItem Header="Delete Question Pack" Icon="{fa:Icon Trashcan}" />
             <Separator/>
@@ -20,25 +20,14 @@
             <MenuItem Header="E_xit" InputGestureText="Alt+F4" Icon="{fa:Icon DoorOpen}"/>
             </MenuItem>
             <MenuItem Header="_Edit">
-            <MenuItem Header="Add Question" InputGestureText="Insert" Icon="{fa:Icon Plus}" Command="{Binding AddQuestionCommand}"/>
-            <MenuItem Header="Remove Question" InputGestureText="Delete" Icon="{fa:Icon Minus}" Command="{Binding RemoveQuestionCommand}"/>
-            <MenuItem Header="Set PackName" Icon="{fa:Icon Pencil}" Command="{Binding PlayerViewModel.SetPackNameCommand}"/>
-            <MenuItem Header="Pack Options" InputGestureText="Ctrl+O" Icon="{fa:Icon Sliders}" Command="{Binding PackOptionsCommand}"/>
+            <MenuItem Header="Add Question" InputGestureText="Insert" Icon="{fa:Icon Plus}" Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
+            <MenuItem Header="Remove Question" InputGestureText="Delete" Icon="{fa:Icon Minus}" Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
+            <MenuItem Header="Pack Options" InputGestureText="Ctrl+O" Icon="{fa:Icon Sliders}" Command="{Binding ConfigurationViewModel.PackOptionsCommand}"/>
         </MenuItem>
         <MenuItem Header="_View">
-            <MenuItem Header="Play" InputGestureText="Ctrl+P" Icon="{fa:Icon Play}"/>
-            <MenuItem Header="Edit" InputGestureText="Ctrl+E" Icon="{fa:Icon gears}"/>
+            <MenuItem Header="Play" InputGestureText="Ctrl+P" Icon="{fa:Icon Play}" Command="{Binding ShowPlayerViewCommand}"/>
+            <MenuItem Header="Edit" InputGestureText="Ctrl+E" Icon="{fa:Icon gears}" Command="{Binding ShowConfigurationViewCommand}"/>
             <MenuItem Header="Fullscreen" InputGestureText="Alt+Enter" Icon="{fa:Icon expand}"/>
             </MenuItem>
         </Menu>
 </UserControl>
-
-    
-    
-<!-- Första bokstav efter _ blir shortcut i menyn  
-    <Separator/> gör en liten linje mellan valen i menyn
-    InputGestureText för att skriva "instruktioner" eller grå text i menyn.
- 
-    Remove Question finns inte med i Fredriks exempelversion.
-    
-    --> 
