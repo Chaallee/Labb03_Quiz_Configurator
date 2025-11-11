@@ -13,25 +13,27 @@ using Labb3.Views;
 
 namespace Labb3.ViewModels
 {
-     class MainWindowViewModel : ViewModelBase
+
+    class MainWindowViewModel : ViewModelBase
     {
         public ObservableCollection<QuestionPackViewModel> Packs { get; } = new();
 
-		private QuestionPackViewModel _activePack;
+        private QuestionPackViewModel _activePack;
 
         private Visibility _visibilityConfigurationView;
         private Visibility _visiblePlayerView;
 
 
         public QuestionPackViewModel ActivePack
-		{
-			get => _activePack;
-			set {
-				_activePack = value;
-				RaisePropertyChanged();
+        {
+            get => _activePack;
+            set {
+                _activePack = value;
+                RaisePropertyChanged();
+
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
-			}
-		}
+            }
+        }
 
         public DelegateCommand ShowPlayerViewCommand { get; }
         public DelegateCommand ShowConfigurationViewCommand { get; }
@@ -45,7 +47,7 @@ namespace Labb3.ViewModels
                 RaisePropertyChanged();
             }
         }
-          
+
         public Visibility VisibilityConfigurationView 
         {
             get => _visibilityConfigurationView;
@@ -56,11 +58,13 @@ namespace Labb3.ViewModels
             }
         }
 
+
         public PlayerViewModel? PlayerViewModel { get; }
         public ConfigurationViewModel? ConfigurationViewModel { get; }
         
         public MainWindowViewModel()
         {
+
             PlayerViewModel = new PlayerViewModel(this);
             ConfigurationViewModel = new ConfigurationViewModel(this);
 
@@ -76,12 +80,14 @@ namespace Labb3.ViewModels
             ActivePack.Questions.Add(new Question($"Vad heter sveriges huvudstad?", "Stockholm", "Oslo", "London", "Göteborg"));
         }
 
-        
         private void ShowPlayerView(object? obj)
         {
             VisiblePlayerView = Visibility.Visible;
             VisibilityConfigurationView = Visibility.Hidden;
+            
+            PlayerViewModel?.StartGame();
         }
+
 
         private void ShowConfigurationView(object? obj)
         {

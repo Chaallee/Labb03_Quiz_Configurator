@@ -14,9 +14,7 @@ using Labb3.ViewModels;
 
 namespace Labb3
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         

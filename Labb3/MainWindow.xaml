@@ -20,11 +20,3 @@
         <views:ConfigurationView Grid.Row="1" Visibility="{Binding VisibilityConfigurationView}"/>
     </Grid>
 </Window>
-
-
-
-<!--
-        PlayerView och ConfigurationView ska växlas emellan. går att kommentera ut i början för att se.
-        Men ska läggas till kod för att växlas emellan.
-        
-        -->
