@@ -15,9 +15,7 @@ using Labb3.ViewModels;
 
 namespace Labb3.Views
 {
-    /// <summary>
-    /// Interaction logic for PackOptions.xaml
-    /// </summary>
+
     public partial class PackOptions : Window
     {
         public PackOptions()
