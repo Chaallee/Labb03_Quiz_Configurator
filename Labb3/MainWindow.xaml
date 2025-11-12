@@ -8,6 +8,14 @@
         mc:Ignorable="d"
         d:Height="500" d:Width="400"
         Title="MainWindow" Height="450" Width="800" FontSize="24">
+    
+    <Window.InputBindings>
+        <KeyBinding Key="P" Modifiers="Ctrl" Command="{Binding ShowPlayerViewCommand}"/>
+        <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding ShowConfigurationViewCommand}"/>
+        <KeyBinding Key="Enter" Modifiers="Alt" Command="{Binding ToggleFullscreenCommand}"/>
+        <KeyBinding Key="F4" Modifiers="Alt" Command="{Binding ExitCommand}"/>
+    </Window.InputBindings>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,5 +26,6 @@
 
         <views:PlayerView Grid.Row="1" Visibility="{Binding VisiblePlayerView}"/>
         <views:ConfigurationView Grid.Row="1" Visibility="{Binding VisibilityConfigurationView}"/>
+        <views:QuizCompleteView Grid.Row="1" Visibility="{Binding VisibilityQuizCompleteView}"/>
     </Grid>
 </Window>

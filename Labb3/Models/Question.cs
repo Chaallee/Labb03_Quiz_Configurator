@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 
 namespace Labb3.Models;
 
-
 public class Question : INotifyPropertyChanged  
 {
     public Question(string query, string correctAnswer,
@@ -11,7 +10,7 @@ public class Question : INotifyPropertyChanged
     {
         _query = query;
         _correctAnswer = correctAnswer;
-        IncorrectAnswers = [incorrectAnswer1, incorrectAnswer2, incorrectAnswer3];
+        IncorrectAnswers = [incorrectAnswer1, incorrectAnswer2, incorrectAnswer3]; 
     }
 
     private string _query;

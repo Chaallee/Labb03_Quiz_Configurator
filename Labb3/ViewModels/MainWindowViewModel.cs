@@ -20,14 +20,15 @@ namespace Labb3.ViewModels
         public ObservableCollection<QuestionPackViewModel> Packs { get; } = new();
 
         private QuestionPackViewModel _activePack;
-
         private Visibility _visibilityConfigurationView;
         private Visibility _visiblePlayerView;
+        private Visibility _visibilityQuizCompleteView;
 
         public QuestionPackViewModel ActivePack
         {
             get => _activePack;
-            set {
+            set
+            {
                 _activePack = value;
                 RaisePropertyChanged();
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
@@ -38,7 +39,10 @@ namespace Labb3.ViewModels
         public DelegateCommand ShowConfigurationViewCommand { get; }
         public DelegateCommand NewQuestionPackCommand { get; }
         public DelegateCommand SelectPackCommand { get; }
-        public DelegateCommand DeletePackCommand { get; } 
+        public DelegateCommand DeletePackCommand { get; }
+        public DelegateCommand ToggleFullscreenCommand { get; }
+        public DelegateCommand ExitCommand { get; }
+        public DelegateCommand ShowQuizCompleteViewCommand { get; }
 
         public Visibility VisiblePlayerView
         {
@@ -50,7 +54,7 @@ namespace Labb3.ViewModels
             }
         }
 
-        public Visibility VisibilityConfigurationView 
+        public Visibility VisibilityConfigurationView
         {
             get => _visibilityConfigurationView;
             set
@@ -60,9 +64,19 @@ namespace Labb3.ViewModels
             }
         }
 
+        public Visibility VisibilityQuizCompleteView
+        {
+            get => _visibilityQuizCompleteView;
+            set
+            {
+                _visibilityQuizCompleteView = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public PlayerViewModel? PlayerViewModel { get; }
         public ConfigurationViewModel? ConfigurationViewModel { get; }
-        
+
         public MainWindowViewModel()
         {
             _questionPackService = new QuestionPackService();
@@ -72,18 +86,22 @@ namespace Labb3.ViewModels
 
             VisibilityConfigurationView = Visibility.Hidden;
             VisiblePlayerView = Visibility.Hidden;
+            VisibilityQuizCompleteView = Visibility.Hidden; 
 
             ShowPlayerViewCommand = new DelegateCommand(ShowPlayerView);
             ShowConfigurationViewCommand = new DelegateCommand(ShowConfigurationView);
             NewQuestionPackCommand = new DelegateCommand(async _ => await CreateNewQuestionPack());
             SelectPackCommand = new DelegateCommand(SelectPack);
-            DeletePackCommand = new DelegateCommand(async parameter => await DeletePack(parameter)); 
+            DeletePackCommand = new DelegateCommand(async parameter => await DeletePack(parameter));
+            ToggleFullscreenCommand = new DelegateCommand(ToggleFullscreen);
+            ExitCommand = new DelegateCommand(ExitApplication);
+            ShowQuizCompleteViewCommand = new DelegateCommand(ShowQuizCompleteView); 
 
             var pack = new QuestionPack("Mina frågor");
             ActivePack = new QuestionPackViewModel(pack);
             ActivePack.Questions.Add(new Question($"Vad är 1+1", "2", "3", "1", "4"));
             ActivePack.Questions.Add(new Question($"Vad heter sveriges huvudstad?", "Stockholm", "Oslo", "London", "Göteborg"));
-            
+
             Packs.Add(ActivePack);
 
             _ = LoadAllPacks();
@@ -164,10 +182,18 @@ namespace Labb3.ViewModels
             }
         }
 
+        private void ShowQuizCompleteView(object? obj)
+        {
+            VisibilityQuizCompleteView = Visibility.Visible;
+            VisiblePlayerView = Visibility.Hidden;
+            VisibilityConfigurationView = Visibility.Hidden;
+        }
+
         private void ShowPlayerView(object? obj)
         {
             VisiblePlayerView = Visibility.Visible;
             VisibilityConfigurationView = Visibility.Hidden;
+            VisibilityQuizCompleteView = Visibility.Hidden;
 
             PlayerViewModel?.StartGame();
         }
@@ -176,6 +202,31 @@ namespace Labb3.ViewModels
         {
             VisibilityConfigurationView = Visibility.Visible;
             VisiblePlayerView = Visibility.Hidden;
+            VisibilityQuizCompleteView = Visibility.Hidden;
+        }
+
+        private void ToggleFullscreen(object? obj)
+        {
+            var window = Application.Current.MainWindow;
+
+            if (window != null)
+            {
+                if (window.WindowState == WindowState.Normal)
+                {
+                    window.WindowState = WindowState.Maximized;
+                    window.WindowStyle = WindowStyle.None;
+                }
+                else
+                {
+                    window.WindowState = WindowState.Normal;
+                    window.WindowStyle = WindowStyle.SingleBorderWindow;
+                }
+            }
+        }
+
+        private void ExitApplication(object? obj)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

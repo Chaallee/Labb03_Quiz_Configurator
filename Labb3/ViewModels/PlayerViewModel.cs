@@ -11,14 +11,12 @@ using System.Windows.Threading;
 
 namespace Labb3.ViewModels
 {
-
     class PlayerViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? _mainWindowViewModel;
         private DispatcherTimer _timer;
         private DispatcherTimer _IconTimer; 
 
-        public DelegateCommand SetPackNameCommand { get; }
         public DelegateCommand AnswerCommand { get; }
         
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
@@ -53,20 +51,9 @@ namespace Labb3.ViewModels
             }
         }
 
+        public string CurrentQuestionText => CurrentQuestion?.Query ?? "";
 
-        public string CurrentQuestionText => CurrentQuestion?.Query ?? "No question loaded";
-
-
-        public string QuestionProgress
-        {
-            get
-            {
-                if (ActivePack?.Questions == null || ActivePack.Questions.Count == 0)
-                    return "No questions available";
-                
-                return $"Question {_currentQuestionIndex + 1} of {ActivePack.Questions.Count}";
-            }
-        }
+        public string QuestionProgress => $"Question {_currentQuestionIndex + 1} of {ActivePack?.Questions.Count ?? 0}";
 
         private Visibility _answer1IconVisibility = Visibility.Collapsed;
         public Visibility Answer1IconVisibility
@@ -168,14 +155,22 @@ namespace Labb3.ViewModels
             }
         }
 
+        private string _completionMessage = "";
+        public string CompletionMessage
+        {
+            get => _completionMessage;
+            set
+            {
+                _completionMessage = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public PlayerViewModel(MainWindowViewModel? mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
 
-            SetPackNameCommand = new DelegateCommand(SetPackName, CanSetPackName);
             AnswerCommand = new DelegateCommand(OnAnswerSelected);
-            
-            DemoText = string.Empty;
 
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1.0);
@@ -184,7 +179,6 @@ namespace Labb3.ViewModels
             _IconTimer = new DispatcherTimer();
             _IconTimer.Interval = TimeSpan.FromSeconds(1.5);
             _IconTimer.Tick += IconTimer_Tick;
-            
         }
 
         public void StartGame()
@@ -204,12 +198,9 @@ namespace Labb3.ViewModels
             Answer4IconVisibility = Visibility.Collapsed;
         }
 
-
         private void LoadQuestion(int index)
         {
-            if (ActivePack?.Questions != null && 
-                index >= 0 && 
-                index < ActivePack.Questions.Count)
+            if (ActivePack?.Questions != null && index >= 0 && index < ActivePack.Questions.Count)
             {
                 _currentQuestionIndex = index;
                 CurrentQuestion = ActivePack.Questions[index];
@@ -218,8 +209,8 @@ namespace Labb3.ViewModels
                 
                 HideAnswerIcons();
             }
-
         }
+
         private void ResetTimer()
         {
             TimeRemaining = ActivePack?.TimeLimitInSeconds ?? 30;
@@ -237,7 +228,6 @@ namespace Labb3.ViewModels
             }
         }
 
-
         private void Timer_Tick(object? sender, EventArgs e)
         {
             if (TimeRemaining > 0)
@@ -250,18 +240,14 @@ namespace Labb3.ViewModels
             }
         }
 
-
         private void IconTimer_Tick(object? sender, EventArgs e)
         {
-
             _IconTimer.Stop();
             
-
             HideAnswerIcons();
 
             MoveToNextQuestion();
         }
-
 
         private void OnAnswerSelected(object? selectedAnswer)
         {
@@ -292,7 +278,6 @@ namespace Labb3.ViewModels
                     Answer4IconVisibility = Visibility.Visible;
 
                 if (isCorrect) PlayerScore++;
-         
 
                 _IconTimer.Start();
             }
@@ -310,20 +295,15 @@ namespace Labb3.ViewModels
             else
             {
                 _timer.Stop();
-                CurrentQuestion = null;
-                Answer1 = "Quiz";
-                Answer2 = "Complete!";
-                Answer3 = $"Score: {PlayerScore}/{ActivePack?.Questions.Count ?? 0}";
-                Answer4 = ":)";
-
-                HideAnswerIcons();
+                
+                CompletionMessage = $"You got {PlayerScore} out of {ActivePack?.Questions.Count ?? 0} correct!";
+                
+                _mainWindowViewModel?.ShowQuizCompleteViewCommand.Execute(null);
             }
         }
 
-
         private void ShuffleAnswers(Question q)
         {
-
             var answersList = new List<string>
             {
                 q.CorrectAnswer,
@@ -339,29 +319,6 @@ namespace Labb3.ViewModels
             Answer2 = answersList[1];
             Answer3 = answersList[2];
             Answer4 = answersList[3];
-        }
-
-        private string _demoText;
-        public string DemoText
-        {
-            get { return _demoText; }
-            set
-            {
-                _demoText = value;
-                RaisePropertyChanged();
-                SetPackNameCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-
-        private bool CanSetPackName(object? arg)
-        {
-            return DemoText.Length > 0;
-        }
-
-        private void SetPackName(object? obj)
-        {
-            ActivePack.Name = DemoText;
         }
     }
 }

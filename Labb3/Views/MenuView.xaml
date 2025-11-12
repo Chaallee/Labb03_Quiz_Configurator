@@ -7,53 +7,88 @@
              xmlns:local="clr-namespace:Labb3.Views"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
- 
+
     <Menu>
         <MenuItem Header=" _File">
             <MenuItem Header="_New Question Pack" 
                       Icon="{fa:Icon filecircleplus}" 
                       Command="{Binding NewQuestionPackCommand}"/>
-            
-            <MenuItem Header="Select Question Pack" 
+
+            <MenuItem Header="_Select Question Pack" 
                       Icon="{fa:Icon FolderOpen}"
                       ItemsSource="{Binding Packs}">
+
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="MenuItem">
-                        <Setter Property="Header" Value="{Binding Name}"/>
-                        <Setter Property="Command" Value="{Binding DataContext.SelectPackCommand, RelativeSource={RelativeSource AncestorType=Menu}}"/>
-                        <Setter Property="CommandParameter" Value="{Binding}"/>
+                        <Setter Property="Header" 
+                                Value="{Binding Name}"/>
+                        <Setter Property="Command" 
+                                Value="{Binding DataContext.SelectPackCommand, 
+                                 RelativeSource={RelativeSource AncestorType=Menu}}"/>
+                        <Setter Property="CommandParameter" 
+                                Value="{Binding}"/>
                     </Style>
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
-            
-            
-            <MenuItem Header="Delete Question Pack" 
+
+
+            <MenuItem Header="_Delete Question Pack" 
                       Icon="{fa:Icon Trashcan}"
                       ItemsSource="{Binding Packs}">
+
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="MenuItem">
-                        <Setter Property="Header" Value="{Binding Name}"/>
-                        <Setter Property="Icon" Value="{fa:Icon Trash}"/>
-                        <Setter Property="Command" Value="{Binding DataContext.DeletePackCommand, RelativeSource={RelativeSource AncestorType=Menu}}"/>
-                        <Setter Property="CommandParameter" Value="{Binding}"/>
+                        <Setter Property="Header" 
+                                Value="{Binding Name}"/>
+                        <Setter Property="Icon" 
+                                Value="{fa:Icon Trash}"/>
+                        <Setter Property="Command" 
+                                Value="{Binding DataContext.DeletePackCommand, 
+                                RelativeSource={RelativeSource AncestorType=Menu}}"/>
+                        <Setter Property="CommandParameter" 
+                                Value="{Binding}"/>
                     </Style>
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
-            
+
             <Separator/>
-            <MenuItem Header="Import Questions" InputGestureText="Ctrl+I" Icon="{fa:Icon Download}"/>
+            <MenuItem Header="_Import Questions" 
+                      InputGestureText="Ctrl+I" 
+                      Icon="{fa:Icon Download}"/>
             <Separator/>
-            <MenuItem Header="E_xit" InputGestureText="Alt+F4" Icon="{fa:Icon DoorOpen}"/>
+            <MenuItem Header="E_xit" 
+                      InputGestureText="Alt+F4" 
+                      Icon="{fa:Icon DoorOpen}"
+                      Command="{Binding ExitCommand}"/>
         </MenuItem>
         <MenuItem Header="_Edit">
-            <MenuItem Header="Add Question" InputGestureText="Insert" Icon="{fa:Icon Plus}" Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
-            <MenuItem Header="Remove Question" InputGestureText="Delete" Icon="{fa:Icon Minus}" Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
-            <MenuItem Header="Pack Options" InputGestureText="Ctrl+O" Icon="{fa:Icon Sliders}" Command="{Binding ConfigurationViewModel.PackOptionsCommand}"/>
+            <MenuItem Header="_Add Question" 
+                      InputGestureText="Insert" 
+                      Icon="{fa:Icon Plus}" 
+                      Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
+
+            <MenuItem Header="_Remove Question" 
+                      InputGestureText="Delete" 
+                      Icon="{fa:Icon Minus}" 
+                      Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
+            <MenuItem Header="Pack _Options" 
+                      InputGestureText="Ctrl+O" 
+                      Icon="{fa:Icon Sliders}" 
+                      Command="{Binding ConfigurationViewModel.PackOptionsCommand}"/>
         </MenuItem>
         <MenuItem Header="_View">
-            <MenuItem Header="Play" InputGestureText="Ctrl+P" Icon="{fa:Icon Play}" Command="{Binding ShowPlayerViewCommand}"/>
-            <MenuItem Header="Edit" InputGestureText="Ctrl+E" Icon="{fa:Icon gears}" Command="{Binding ShowConfigurationViewCommand}"/>
-            <MenuItem Header="Fullscreen" InputGestureText="Alt+Enter" Icon="{fa:Icon expand}"/>
+            <MenuItem Header="_Play" 
+                      InputGestureText="Ctrl+P" 
+                      Icon="{fa:Icon Play}" 
+                      Command="{Binding ShowPlayerViewCommand}"/>
+            <MenuItem Header="Edit" 
+                      InputGestureText="Ctrl+E" 
+                      Icon="{fa:Icon gears}" 
+                      Command="{Binding ShowConfigurationViewCommand}"/>
+            <MenuItem Header="Full_screen" 
+                      InputGestureText="Alt+Enter" 
+                      Icon="{fa:Icon expand}"
+                      Command="{Binding ToggleFullscreenCommand}"/>
         </MenuItem>
     </Menu>
 </UserControl>
