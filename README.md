@@ -1,6 +1,6 @@
 Fokus på denna labb var Model-View-ViewModel (MVVM)-arkitektur i C#.
 
-Byggt en quiz applikation med hjälp av XAML. Spelaren kan växla mellan vyer som syns nedanför, navigera menyer med tangentknappar, lägga till och ta bort frågor samt välja tidsgräns och question packs & slutligen spela quizspelet.
+Byggt en quiz applikation med hjälp av XAML. Spelaren kan växla mellan vyer som syns nedanför, navigera menyer med tangentknappar, lägga till och ta bort frågor samt välja tidsgräns på question pack som man har valt eller skapat  & slutligen spela quizspelet.
 
 Play window:
 
