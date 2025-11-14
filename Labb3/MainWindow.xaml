@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:Labb3.Views"
         mc:Ignorable="d"
         d:Height="500" d:Width="400"
-        Title="MainWindow" Height="450" Width="800" FontSize="24">
+        Title="Quiz Configurator" Height="450" Width="800" FontSize="24">
     
     <Window.InputBindings>
         <KeyBinding Key="P" Modifiers="Ctrl" Command="{Binding ShowPlayerViewCommand}"/>
