@@ -4,14 +4,14 @@ Byggt en quiz applikation med hjälp av XAML. Spelaren kan växla mellan vyer so
 
 Play window:
 
-
 <img width="777" height="433" alt="image" src="https://github.com/user-attachments/assets/c1f2050a-8018-4189-8ae8-c80f32c3283c" />
 
 
 
 
 
-Configuration window:
 
+
+Configuration window:
 
 <img width="778" height="435" alt="image" src="https://github.com/user-attachments/assets/c55e4316-1eaa-4632-8f3b-8561063cf0db" />
