@@ -84,7 +84,7 @@ namespace Labb3.ViewModels
             PlayerViewModel = new PlayerViewModel(this);
             ConfigurationViewModel = new ConfigurationViewModel(this);
 
-            VisibilityConfigurationView = Visibility.Hidden;
+            VisibilityConfigurationView = Visibility.Visible;
             VisiblePlayerView = Visibility.Hidden;
             VisibilityQuizCompleteView = Visibility.Hidden; 
 
