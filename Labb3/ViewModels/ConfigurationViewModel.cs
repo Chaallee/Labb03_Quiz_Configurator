@@ -29,6 +29,7 @@ namespace Labb3.ViewModels
             {
                 _selectedQuestion = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(IsQuestionSelected)); 
                 LoadQuestionToEditor();
                 RemoveQuestionCommand.RaiseCanExecuteChanged();
                 SaveQuestionCommand.RaiseCanExecuteChanged();
@@ -43,6 +44,7 @@ namespace Labb3.ViewModels
             {
                 _editQuery = value;
                 RaisePropertyChanged();
+                SaveQuestionCommand.RaiseCanExecuteChanged(); 
             }
         }
 
@@ -54,6 +56,7 @@ namespace Labb3.ViewModels
             {
                 _editCorrectAnswer = value;
                 RaisePropertyChanged();
+                SaveQuestionCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -65,6 +68,7 @@ namespace Labb3.ViewModels
             {
                 _editIncorrectAnswer1 = value;
                 RaisePropertyChanged();
+                SaveQuestionCommand.RaiseCanExecuteChanged(); 
             }
         }
 
@@ -76,6 +80,7 @@ namespace Labb3.ViewModels
             {
                 _editIncorrectAnswer2 = value;
                 RaisePropertyChanged();
+                SaveQuestionCommand.RaiseCanExecuteChanged(); 
             }
         }
 
@@ -87,6 +92,7 @@ namespace Labb3.ViewModels
             {
                 _editIncorrectAnswer3 = value;
                 RaisePropertyChanged();
+                SaveQuestionCommand.RaiseCanExecuteChanged(); 
             }
         }
 
@@ -140,7 +146,17 @@ namespace Labb3.ViewModels
 
         private bool CanSaveQuestion(object? obj)
         {
-            return SelectedQuestion != null && mainWindowViewModel?.ActivePack != null;
+            if (SelectedQuestion == null || mainWindowViewModel?.ActivePack == null)
+                return false;
+
+
+            bool isTextBoxModified = EditQuery != SelectedQuestion.Query ||
+                              EditCorrectAnswer != SelectedQuestion.CorrectAnswer ||
+                              EditIncorrectAnswer1 != SelectedQuestion.IncorrectAnswers[0] ||
+                              EditIncorrectAnswer2 != SelectedQuestion.IncorrectAnswers[1] ||
+                              EditIncorrectAnswer3 != SelectedQuestion.IncorrectAnswers[2];
+
+            return isTextBoxModified;
         }
 
         private void SaveQuestion(object? obj)
@@ -185,6 +201,8 @@ namespace Labb3.ViewModels
             SelectedQuestion.IncorrectAnswers[0] = EditIncorrectAnswer1;
             SelectedQuestion.IncorrectAnswers[1] = EditIncorrectAnswer2;
             SelectedQuestion.IncorrectAnswers[2] = EditIncorrectAnswer3;
+
+            SaveQuestionCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanRemoveQuestion(object? obj)
@@ -216,14 +234,16 @@ namespace Labb3.ViewModels
         {
             var newQuestion = new Question(
                 query: "Write a new question here",
-                correctAnswer: "Correct Answer goes here",
-                incorrectAnswer1: "Wrong Answer 1",
-                incorrectAnswer2: "Wrong Answer 2",
-                incorrectAnswer3: "Wrong Answer 3"
+                correctAnswer: string.Empty,
+                incorrectAnswer1: string.Empty,
+                incorrectAnswer2: string.Empty,
+                incorrectAnswer3: string.Empty
             );
 
             mainWindowViewModel!.ActivePack.Questions.Add(newQuestion);
             SelectedQuestion = newQuestion;
         }
+
+        public bool IsQuestionSelected => SelectedQuestion != null;
     }
 }

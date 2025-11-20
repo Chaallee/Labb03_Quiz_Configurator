@@ -100,19 +100,8 @@ namespace Labb3.ViewModels
             }
         }
 
-        private string _rightOrWrongIcon = "";
-        public string RightOrWrongIcon
-        {
-            get => _rightOrWrongIcon;
-            set
-            {
-                _rightOrWrongIcon = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        private string _answer1Icon = "";
-        public string Answer1Icon
+        private string? _answer1Icon = null;
+        public string? Answer1Icon
         {
             get => _answer1Icon;
             set
@@ -122,8 +111,8 @@ namespace Labb3.ViewModels
             }
         }
 
-        private string _answer2Icon = "";
-        public string Answer2Icon
+        private string? _answer2Icon = null;
+        public string? Answer2Icon
         {
             get => _answer2Icon;
             set
@@ -133,8 +122,8 @@ namespace Labb3.ViewModels
             }
         }
 
-        private string _answer3Icon = "";
-        public string Answer3Icon
+        private string? _answer3Icon = null;
+        public string? Answer3Icon
         {
             get => _answer3Icon;
             set
@@ -144,8 +133,8 @@ namespace Labb3.ViewModels
             }
         }
 
-        private string _answer4Icon = "";
-        public string Answer4Icon
+        private string? _answer4Icon = null;
+        public string? Answer4Icon
         {
             get => _answer4Icon;
             set
@@ -254,6 +243,11 @@ namespace Labb3.ViewModels
             Answer2IconVisibility = Visibility.Collapsed;
             Answer3IconVisibility = Visibility.Collapsed;
             Answer4IconVisibility = Visibility.Collapsed;
+            
+            Answer1Icon = null;
+            Answer2Icon = null;
+            Answer3Icon = null;
+            Answer4Icon = null;
         }
 
         private void LoadQuestion(int index)

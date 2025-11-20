@@ -19,7 +19,7 @@
         
         <KeyBinding Key="O" Modifiers="Ctrl" 
                     Command="{Binding ConfigurationViewModel.PackOptionsCommand}"/>
-         </UserControl.InputBindings>
+    </UserControl.InputBindings>
 
     <Grid DataContext="{Binding ConfigurationViewModel}">
 
@@ -68,7 +68,6 @@
                 DisplayMemberPath="Query" 
                 Height="350"
             />
-
         </StackPanel>
 
         <StackPanel Grid.Column="6" Grid.RowSpan="2" Orientation="Vertical">
@@ -80,35 +79,40 @@
                      TextWrapping="Wrap" 
                      Height="65" 
                      x:Name="questionTextBox" 
-                     Text="{Binding EditQuery, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding EditQuery, UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="{Binding IsQuestionSelected}"/>
 
             <Label Content="Correct answer:" 
                    Margin="10 10 0 0" 
                    FontWeight="Bold"/>
             <TextBox Margin="14 0 14 0" 
                      x:Name="correctAnswer" 
-                     Text="{Binding EditCorrectAnswer, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding EditCorrectAnswer, UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="{Binding IsQuestionSelected}"/>
             
             <Label Content="First incorrect answer:" 
                    Margin="10 0 0 0" 
                    FontWeight="Bold"/>
             <TextBox Margin="14 0 14 0"
                      x:Name="incorrectAnswer1" 
-                     Text="{Binding EditIncorrectAnswer1, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding EditIncorrectAnswer1, UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="{Binding IsQuestionSelected}"/>
             
             <Label Content="Second incorrect answer:" 
                    Margin="10 0 0 0" 
                    FontWeight="Bold"/>
             <TextBox Margin="14 0 14 0" 
                      x:Name="incorrectAnswer2" 
-                     Text="{Binding EditIncorrectAnswer2, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding EditIncorrectAnswer2, UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="{Binding IsQuestionSelected}"/>
             
             <Label Content="Third incorrect answer:" 
                    Margin="10 0 0 0" 
                    FontWeight="Bold"/>
             <TextBox Margin="14 0 14 0" 
                      x:Name="incorrectAnswer3" 
-                     Text="{Binding EditIncorrectAnswer3, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding EditIncorrectAnswer3, UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="{Binding IsQuestionSelected}"/>
 
             <Button x:Name="SaveQuestionButton" 
                     Content="Save question" 

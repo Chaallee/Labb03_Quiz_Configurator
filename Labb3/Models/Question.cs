@@ -5,6 +5,14 @@ namespace Labb3.Models;
 
 public class Question : INotifyPropertyChanged  
 {
+
+    public Question()
+    {
+        _query = string.Empty;
+        _correctAnswer = string.Empty;
+        IncorrectAnswers = new string[3];
+    }
+
     public Question(string query, string correctAnswer,
         string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3)
     {
@@ -37,7 +45,7 @@ public class Question : INotifyPropertyChanged
 
     public string[] IncorrectAnswers { get; set; }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged; 
 
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {

@@ -61,4 +61,6 @@ internal class QuestionPackViewModel : ViewModelBase
     }
 
     public ObservableCollection<Question> Questions { get; set; }
+
+    public QuestionPack GetModel() => _model;
 }

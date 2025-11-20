@@ -67,7 +67,7 @@
                         CommandParameter="{Binding Answer1}"
                         FontSize="20" Margin="20"/>
 
-                <Image Source="{Binding Answer1Icon}"
+                <Image Source="{Binding Answer1Icon, TargetNullValue={x:Null}}"
                        Width="60"
                        Height="60"
                        HorizontalAlignment="Right"
@@ -83,7 +83,7 @@
                         CommandParameter="{Binding Answer2}"
                         FontSize="20" Margin="20"/>
 
-                <Image Source="{Binding Answer2Icon}"
+                <Image Source="{Binding Answer2Icon, TargetNullValue={x:Null}}"
                        Width="60"
                        Height="60"
                        HorizontalAlignment="Right"
@@ -99,7 +99,7 @@
                         CommandParameter="{Binding Answer3}"
                         FontSize="20" Margin="20"/>
 
-                <Image Source="{Binding Answer3Icon}"
+                <Image Source="{Binding Answer3Icon, TargetNullValue={x:Null}}"
                        Width="60"
                        Height="60"
                        HorizontalAlignment="Right"
@@ -115,7 +115,7 @@
                         CommandParameter="{Binding Answer4}"
                         FontSize="20" Margin="20"/>
 
-                <Image Source="{Binding Answer4Icon}"
+                <Image Source="{Binding Answer4Icon, TargetNullValue={x:Null}}"
                        Width="60"
                        Height="60"
                        HorizontalAlignment="Right"

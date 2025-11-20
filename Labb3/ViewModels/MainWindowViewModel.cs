@@ -94,7 +94,7 @@ namespace Labb3.ViewModels
             SelectPackCommand = new DelegateCommand(SelectPack);
             DeletePackCommand = new DelegateCommand(async parameter => await DeletePack(parameter));
             ToggleFullscreenCommand = new DelegateCommand(ToggleFullscreen);
-            ExitCommand = new DelegateCommand(ExitApplication);
+            ExitCommand = new DelegateCommand(_ => ExitApplication()); 
             ShowQuizCompleteViewCommand = new DelegateCommand(ShowQuizCompleteView); 
 
             var pack = new QuestionPack("Mina frågor");
@@ -105,6 +105,22 @@ namespace Labb3.ViewModels
             Packs.Add(ActivePack);
 
             _ = LoadAllPacks();
+            
+
+            Application.Current.Exit += OnApplicationExit;
+        }
+
+        private async void OnApplicationExit(object sender, ExitEventArgs e)
+        {
+            await SaveAllPacks();
+        }
+
+        private async Task SaveAllPacks()
+        {
+            foreach (var packViewModel in Packs)
+            {
+                await _questionPackService.SaveQuestionPackAsync(packViewModel.GetModel());
+            }
         }
 
         private void SelectPack(object? parameter)
@@ -224,7 +240,7 @@ namespace Labb3.ViewModels
             }
         }
 
-        private void ExitApplication(object? obj)
+        private void ExitApplication()
         {
             Application.Current.Shutdown();
         }
