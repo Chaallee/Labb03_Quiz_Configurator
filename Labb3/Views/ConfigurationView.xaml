@@ -115,7 +115,7 @@
                      IsEnabled="{Binding IsQuestionSelected}"/>
 
             <Button x:Name="SaveQuestionButton" 
-                    Content="Save question" 
+                    Content="Apply changes" 
                     Command="{Binding SaveQuestionCommand}"
                     Margin="14 10 14 0"/>
         </StackPanel>

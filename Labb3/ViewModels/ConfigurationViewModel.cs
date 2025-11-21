@@ -102,7 +102,7 @@ namespace Labb3.ViewModels
         {
             this.mainWindowViewModel = mainWindowViewModel;
 
-            AddQuestionCommand = new DelegateCommand(AddQuestion);
+            AddQuestionCommand = new DelegateCommand(AddQuestion, CanAddQuestion);
             PackOptionsCommand = new DelegateCommand(PackOptions);
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
             SaveQuestionCommand = new DelegateCommand(SaveQuestion, CanSaveQuestion);
@@ -232,6 +232,13 @@ namespace Labb3.ViewModels
 
         private void AddQuestion(object? obj)
         {
+            if (mainWindowViewModel?.ActivePack == null)
+            {
+                MessageBox.Show("Please create a question pack first.", "No Active pack", 
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
             var newQuestion = new Question(
                 query: "Write a new question here",
                 correctAnswer: string.Empty,
@@ -240,8 +247,13 @@ namespace Labb3.ViewModels
                 incorrectAnswer3: string.Empty
             );
 
-            mainWindowViewModel!.ActivePack.Questions.Add(newQuestion);
+            mainWindowViewModel.ActivePack.Questions.Add(newQuestion);
             SelectedQuestion = newQuestion;
+        }
+
+        private bool CanAddQuestion(object? obj)
+        {
+            return mainWindowViewModel?.ActivePack != null;
         }
 
         public bool IsQuestionSelected => SelectedQuestion != null;
