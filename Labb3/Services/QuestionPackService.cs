@@ -33,7 +33,7 @@ namespace Labb3.Services
 
         public async Task SaveQuestionPackAsync(QuestionPack pack)
         {
-            string fileName = GetSafeFileName(pack.PackName) + ".json";
+            string fileName = ChangeInvalidSymbol(pack.PackName) + ".json";
             string filePath = Path.Combine(_dataFolder, fileName);
 
 
@@ -64,9 +64,9 @@ namespace Labb3.Services
                         packs.Add(pack);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    Console.WriteLine($"Error loading {filePath}: {ex.Message}");
+                    Console.WriteLine($"Error loading {filePath}: {exception.Message}");
                 }
             }
 
@@ -75,7 +75,7 @@ namespace Labb3.Services
 
         public async Task DeleteQuestionPackAsync(string packName)
         {
-            string fileName = GetSafeFileName(packName) + ".json";
+            string fileName = ChangeInvalidSymbol(packName) + ".json";
             string filePath = Path.Combine(_dataFolder, fileName);
 
             await Task.Run(() =>
@@ -87,7 +87,7 @@ namespace Labb3.Services
             });
         }
 
-        private string GetSafeFileName(string packName)
+        private string ChangeInvalidSymbol(string packName)
         {
             foreach (char c in Path.GetInvalidFileNameChars())
             {
