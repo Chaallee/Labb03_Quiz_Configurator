@@ -97,22 +97,12 @@ namespace Labb3.ViewModels
             ExitCommand = new DelegateCommand(_ => ExitApplication()); 
             ShowQuizCompleteViewCommand = new DelegateCommand(ShowQuizCompleteView); 
 
-            var pack = new QuestionPack("Mina frågor");
-            ActivePack = new QuestionPackViewModel(pack);
-            ActivePack.Questions.Add(new Question($"Vad är 1+1", "2", "3", "1", "4"));
-            ActivePack.Questions.Add(new Question($"Vad heter sveriges huvudstad?", "Stockholm", "Oslo", "London", "Göteborg"));
-
-            Packs.Add(ActivePack);
-
-            _ = LoadAllPacks();
-            
-
-            Application.Current.Exit += OnApplicationExit;
+            InitializeAsync();
         }
 
-        private async void OnApplicationExit(object sender, ExitEventArgs e)
+        private async void InitializeAsync()
         {
-            await SaveAllPacks();
+            await LoadAllPacks();
         }
 
         private async Task SaveAllPacks()
@@ -196,6 +186,11 @@ namespace Labb3.ViewModels
                     Packs.Add(packViewModel);
                 }
             }
+            
+            if (Packs.Any() && ActivePack == null)
+            {
+                ActivePack = Packs.First();
+            }
         }
 
         private void ShowQuizCompleteView(object? obj)
@@ -242,6 +237,8 @@ namespace Labb3.ViewModels
 
         private void ExitApplication()
         {
+            Task.Run(async () => await SaveAllPacks()).Wait();
+            
             Application.Current.Shutdown();
         }
     }
